@@ -5,28 +5,37 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>小全互动测试</title>
 <style>
-  body { font-family: Arial, sans-serif; background: #f0f8ff; margin:0; padding:0; display:flex; justify-content:center; }
-  .container { max-width:600px; width:100%; padding:20px; }
-  .page { display:none; text-align:center; }
+  @import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
+  body {
+    font-family: 'Baloo 2', cursive;
+    background: linear-gradient(to bottom, #fffae3, #d0f0fd);
+    margin:0; padding:0;
+    display:flex; justify-content:center;
+  }
+  .container {
+    max-width:600px; width:100%; padding:20px;
+    background:#fff9f5; border-radius:15px; box-shadow:0 4px 10px rgba(0,0,0,0.1);
+  }
+  .page { display:none; text-align:center; transition:0.3s; }
   .page.active { display:block; }
-  h2 { color:#333; margin-bottom:10px; }
-  .question p { margin-bottom:20px; font-size:18px; }
+  h2 { color:#333; margin-bottom:10px; font-size:1.6em; }
+  .question p { margin-bottom:20px; font-size:1.2em; }
   button.option {
     display:block;
-    margin: 10px auto;
+    margin:10px auto;
     padding:12px 20px;
     font-size:16px;
     width:80%;
     max-width:300px;
     cursor:pointer;
-    border:1px solid #007bff;
-    border-radius:5px;
-    background:#fff;
+    border:2px solid #ff7f50;
+    border-radius:25px;
+    background:#fff3f0;
     transition:0.2s;
   }
-  button.option:hover { background:#e0f0ff; }
-  button.option.selected { background:#007bff; color:#fff; }
-  textarea { width:90%; padding:8px; margin-top:10px; }
+  button.option:hover { background:#ffd6c2; }
+  button.option.selected { background:#ff7f50; color:#fff; }
+  textarea { width:90%; padding:8px; margin-top:10px; border-radius:10px; border:1px solid #ccc; }
   label { display:block; margin-top:20px; font-weight:bold; }
 </style>
 </head>
@@ -36,8 +45,8 @@
 <!-- page1 -->
 <div class="page active" id="page1">
   <h2>小全互动测试</h2>
-  <p>欢迎来到小全的测试！准备好了吗？</p>
-  <button class="option" onclick="goToPage('page2')">开始测试</button>
+  <p>你睁开眼睛，不知身处何处，前方似乎出现一个黑白色的身影…</p>
+  <button class="option" onclick="goToPage('page2')">开始冒险</button>
 </div>
 
 <!-- page2: 问题1 -->
@@ -71,7 +80,7 @@
 <div class="page" id="page4">
   <div class="question">
     <h2>问题3</h2>
-    <p>小全吃掉了巧克力，并向你说到：年轻的伙伴呦，看在你给我巧克力的份上，我可以实现你一个愿望。</p>
+    <p>小全吃掉了巧克力，并向你说道：年轻的伙伴呦，看在你给我巧克力的份上，我可以实现你一个愿望。</p>
     <button class="option" onclick="answerPage4(1,this)">我想要一个珍贵的礼物</button>
     <button class="option" onclick="answerPage4(2,this)">我想要和你成为朋友</button>
     <button class="option" onclick="answerPage4(3,this)">企鹅怎么会说话？</button>
@@ -250,6 +259,7 @@ function showEndingPage(){
   goToPage('endingPage');
 }
 </script>
+
 </div>
 </body>
 </html>
