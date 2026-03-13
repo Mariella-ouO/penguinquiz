@@ -10,19 +10,19 @@ body, html {
   height:100%;
   margin:0;
   font-family:'Baloo 2', cursive;
-  background:#add8e6; /* 浅蓝色底色 */
+  background:#add8e6; /* 浅蓝底 */
   display:flex;
   justify-content:center;
   align-items:center;
 }
-.page { 
-  display:none; 
+.page {
+  display:none;
   width:100%;
   max-width:600px;
   padding:20px;
-  display:flex; 
-  flex-direction:column; 
-  align-items:center; 
+  display:flex;
+  flex-direction:column;
+  align-items:center;
   justify-content:center;
   text-align:center;
 }
@@ -37,7 +37,7 @@ button.option {
   font-size:1.3em;
   border:2px solid #87ceeb;
   border-radius:25px;
-  background:#ffffff; /* 白色按钮 */
+  background:#ffffff;
   cursor:pointer;
   text-align:left;
   transition:0.2s;
@@ -47,7 +47,7 @@ button.option.selected { background:#87ceeb; color:#fff; }
 textarea {
   width:90%; padding:10px; margin-top:15px;
   border-radius:15px; border:1px solid #ccc; font-size:1.2em;
-  background:#ffffff; /* 白色填充 */
+  background:#ffffff;
 }
 label { font-size:1.2em; font-weight:bold; display:block; margin-top:20px; text-align:left; }
 </style>
@@ -88,7 +88,7 @@ label { font-size:1.2em; font-weight:bold; display:block; margin-top:20px; text-
   <h2>问题3</h2>
   <p>小全吃掉了巧克力，并向你说道：年轻的伙伴呦，看在你给我巧克力的份上，我可以实现你一个愿望。</p>
   <button class="option" onclick="answerPage4(1,this)">我想要一个珍贵的礼物</button>
-  <button class="option" onclick="answerPage4(2,this)">我想要和你成为朋友</button>
+  <button class="option" onclick="answerPage4(2,this)">我想要和你成为伙伴</button>
   <button class="option" onclick="answerPage4(3,this)">企鹅怎么会说话？</button>
 </div>
 
@@ -168,7 +168,6 @@ label { font-size:1.2em; font-weight:bold; display:block; margin-top:20px; text-
 </div>
 
 <script>
-// JS逻辑和之前版本相同
 let generous=false, brave=false, rational=false;
 let testAnswers={6:'',7:'',8:''};
 let forceEnding='';
