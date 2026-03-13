@@ -8,56 +8,59 @@
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
 
 body, html {
-  height:100%;
-  margin:0;
-  font-family:'Baloo 2', cursive;
-  background:#d8f0ff; /* 更浅的蓝色背景 */
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  height: 100%;
+  margin: 0;
+  font-family: 'Baloo 2', cursive;
+  background: #cce7ff; /* 浅蓝色背景 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .container {
-  width:90%;
-  max-width:600px;
-  min-height:80%;
-  display:flex;
-  flex-direction:column;
-  justify-content:flex-start;
-  align-items:center;
-  text-align:center;
-  padding:20px;
+  width: 90%;
+  max-width: 600px;
+  min-height: 80%;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-.page { display:none; width:100%; transition:0.3s; }
-.page.active { display:flex; flex-direction:column; align-items:center; justify-content:flex-start; }
+.page { display: none; width: 100%; transition: 0.3s; }
+.page.active { display: flex; flex-direction: column; align-items: center; justify-content: center; }
 
-h2 { font-size:2em; color:#333; margin-bottom:10px; }
-p { font-size:1.3em; color:#444; margin-bottom:20px; }
+h2 { font-size: 2em; color: #333; margin-bottom: 15px; }
+p { font-size: 1.3em; color: #444; margin-bottom: 25px; }
 
 button.option {
-  width:90%;
-  max-width:400px;
-  padding:15px 20px;
-  margin:8px 0;
-  font-size:1.3em;
-  border:2px solid #87ceeb;
-  border-radius:25px;
-  background:#ffffff;
-  cursor:pointer;
-  text-align:left;
-  transition:0.2s;
+  width: 80%;
+  max-width: 400px;
+  padding: 15px 20px;
+  margin: 10px 0;
+  font-size: 1.3em;
+  border: 2px solid #87ceeb;
+  border-radius: 25px;
+  background: #ffffff;
+  cursor: pointer;
+  text-align: left;
+  transition: 0.2s;
 }
-button.option:hover { background:#e0f8ff; }
-button.option.selected { background:#87ceeb; color:#fff; }
+button.option:hover { background: #e0f0ff; }
+button.option.selected { background: #87ceeb; color: #fff; }
 
 textarea {
-  width:90%; padding:10px; margin-top:15px;
-  border-radius:15px; border:1px solid #ccc; font-size:1.2em;
-  background:#ffffff;
+  width: 90%;
+  padding: 10px;
+  margin-top: 15px;
+  border-radius: 15px;
+  border: 1px solid #ccc;
+  font-size: 1.2em;
+  background: #ffffff;
 }
-label { font-size:1.2em; font-weight:bold; display:block; margin-top:20px; text-align:left; }
-
+label { font-size: 1.2em; font-weight: bold; display: block; margin-top: 20px; text-align: left; }
 </style>
 </head>
 <body>
@@ -95,7 +98,7 @@ label { font-size:1.2em; font-weight:bold; display:block; margin-top:20px; text-
 <!-- page4 -->
 <div class="page" id="page4">
   <h2>问题3</h2>
-  <p>小全吃掉了巧克力，并向你说道：年轻的伙伴呦，看在你给我巧克力的份上，我可以实现你一个愿望。</p>
+  <p>小全吃掉了巧克力，并向你说道：“年轻的伙伴呦，看在你给我巧克力的份上，我可以实现你一个愿望。”</p>
   <button class="option" onclick="answerPage4(1,this)">我想要一个珍贵的礼物</button>
   <button class="option" onclick="answerPage4(2,this)">我想要和你成为朋友</button>
   <button class="option" onclick="answerPage4(3,this)">企鹅怎么会说话？</button>
@@ -166,14 +169,14 @@ label { font-size:1.2em; font-weight:bold; display:block; margin-top:20px; text-
 
 <!-- 结局页面 -->
 <div class="page" id="endingPage">
-  <h2>结局</h2>
+  <h2 id="endingTitle">达成成就</h2>
   <p id="endingText"></p>
   <form id="endingForm" action="https://formspree.io/f/mojkwrnd" method="POST" target="_blank">
     <label for="userMessage">最后，你有什么想对小全说的吗？</label>
     <textarea id="userMessage" name="message" rows="4"></textarea>
     <button type="submit" style="margin-top:10px;">提交</button>
   </form>
-  <p style="margin-top:15px; color:#555;">提交后可以截屏到小全朋友圈互动哦~</p>
+  <p style="margin-top:15px; color:#555;">你现在可以截屏结局页到小全朋友圈互动</p>
 </div>
 
 <script>
@@ -191,12 +194,47 @@ function selectButton(btn){
   btn.classList.add('selected');
 }
 
-function answerPage2(choice,btn){ selectButton(btn); setTimeout(()=>goToPage('page3'),300); }
-function answerPage3(option,btn){ selectButton(btn); if(option==3) generous=true; if(option==4) brave=true; setTimeout(()=>goToPage(option==4?'page5_1':'page4'),300); }
-function answerPage4(option,btn){ selectButton(btn); setTimeout(()=>{ if(option==1) goToPage('page4_1'); else if(option==2) goToPage('page5'); else goToPage('page4_3'); },300);}
-function answerPage4_1(option,btn){ selectButton(btn); if(option==3) rational=true; setTimeout(()=>goToPage('page4_1_1'),300);}
-function answerTest(page,choice,btn){ selectButton(btn); testAnswers[page]=choice; setTimeout(()=>{ if(page==6) goToPage('page7'); else if(page==7) goToPage('page8'); else showEndingPage(); },300);}
-function forceBad1(){ forceEnding='bad1'; showEndingPage(); }
+function answerPage2(choice,btn){
+  selectButton(btn);
+  setTimeout(()=>goToPage('page3'),300);
+}
+
+function answerPage3(option,btn){
+  selectButton(btn);
+  if(option==3) generous=true;
+  if(option==4) brave=true;
+  setTimeout(()=>goToPage(option==4?'page5_1':'page4'),300);
+}
+
+function answerPage4(option,btn){
+  selectButton(btn);
+  setTimeout(()=>{
+    if(option==1) goToPage('page4_1');
+    else if(option==2) goToPage('page5');
+    else goToPage('page4_3'); 
+  },300);
+}
+
+function answerPage4_1(option,btn){
+  selectButton(btn);
+  if(option==3) rational=true;
+  setTimeout(()=>goToPage('page4_1_1'),300);
+}
+
+function answerTest(page,choice,btn){
+  selectButton(btn);
+  testAnswers[page]=choice;
+  setTimeout(()=>{
+    if(page==6) goToPage('page7');
+    else if(page==7) goToPage('page8');
+    else showEndingPage();
+  },300);
+}
+
+function forceBad1(){
+  forceEnding='bad1';
+  showEndingPage();
+}
 
 function showEndingPage(){
   let ending='';
@@ -204,29 +242,36 @@ function showEndingPage(){
   else{
     let c6=testAnswers[6], c7=testAnswers[7], c8=testAnswers[8];
     let correct6='18', correct7='小蓝企鹅', correct8='0';
-    if(brave){ ending=(c6==correct6 && c7==correct7 && c8==correct8)?'hiddenBrave':'bad2'; }
+
+    if(brave){
+      ending=(c6==correct6 && c7==correct7 && c8==correct8)?'hiddenBrave':'bad2';
+    }
     else if(c6==correct6 && c7==correct7 && c8==correct8){
       if(rational) ending='hiddenRational';
       else if(generous) ending='hiddenGenerous';
       else ending='happy1';
     }
-    else{ ending=(c6==c7 && c7==c8 && c6=='不知道')?'happy2':'happy3'; }
+    else{
+      ending=(c6==c7 && c7==c8 && c6=='不知道')?'happy2':'happy3';
+    }
   }
+
   const endings={
-    hiddenGenerous:"隐藏结局1: 慷慨的伙伴。你答对了三道题，还把巧克力都给了小全，你真好。",
-    hiddenBrave:"隐藏结局2: 你通过了考验，是真正的勇敢者。",
-    hiddenRational:"隐藏结局3: 理智的伙伴。尽管你质疑了小全的礼物，但正确回答了所有问题。能面刺寡人之过者，受上赏。",
-    happy1:"Happy Endding 1: 智慧的伙伴。你答对了所有问题，智慧之光比世界上所有的石头都更闪亮。",
-    happy2:"Happy Endding 2: 诚实的伙伴。你在所有问题上都选择了“不知道”。你的诚实打动了小全。",
-    happy3:"Happy Endding 3: 忠诚的伙伴。尽管没有得到全部问题的正确答案，你的耐心与陪伴打动了小全。她愿意和你一起继续冒险。",
-    bad1:"Bad Endding 1: 回归现实。学业繁忙，压力过大，也不要忘了和小全聊聊天。",
-    bad2:"Bad Endding 2: 你没能通过小全的测试。之前抢来的石头全部打在了你身上。"
+    hiddenGenerous:{title:"达成成就：慷慨的伙伴", text:"你答对了三道题，还把巧克力都给了小全，你真好。"},
+    hiddenBrave:{title:"达成成就：勇敢的伙伴", text:"你通过了考验，是真正的勇敢者。"},
+    hiddenRational:{title:"达成成就：理智的伙伴", text:"尽管你质疑了小全的礼物，但正确回答了所有问题。能面刺寡人之过者，受上赏。"},
+    happy1:{title:"达成成就：智慧的伙伴", text:"你答对了所有问题，智慧之光比世界上所有的石头都更闪亮。"},
+    happy2:{title:"达成成就：诚实的伙伴", text:"你在所有问题上都选择了“不知道”。你的诚实打动了小全。"},
+    happy3:{title:"达成成就：忠诚的伙伴", text:"尽管没有得到全部问题的正确答案，你的耐心与陪伴打动了小全。她愿意和你一起继续冒险。"},
+    bad1:{title:"达成成就：回归现实", text:"学业繁忙，压力过大，也不要忘了和小全聊聊天。"},
+    bad2:{title:"达成成就：失败的伙伴", text:"你没能通过小全的测试。之前抢来的石头全部打在了你身上。"}
   };
-  document.getElementById('endingText').innerText = endings[ending];
+
+  document.getElementById('endingTitle').innerText = endings[ending].title;
+  document.getElementById('endingText').innerText = endings[ending].text;
   goToPage('endingPage');
 }
 </script>
-
 </div>
 </body>
 </html>
