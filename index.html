@@ -10,7 +10,7 @@ body, html {
   height:100%;
   margin:0;
   font-family:'Baloo 2', cursive;
-  background: linear-gradient(to bottom, #fff5f7, #d0f0fd);
+  background:#add8e6; /* 浅蓝色底色 */
   display:flex;
   justify-content:center;
   align-items:center;
@@ -19,7 +19,7 @@ body, html {
   width:90%;
   max-width:600px;
   min-height:80%;
-  background:#fffdf6;
+  background:#ffffff; /* 白色背景 */
   border-radius:25px;
   padding:30px;
   box-shadow:0 8px 20px rgba(0,0,0,0.15);
@@ -39,18 +39,19 @@ button.option {
   padding:15px 20px;
   margin:10px 0;
   font-size:1.3em;
-  border:2px solid #ff7f50;
+  border:2px solid #87ceeb;
   border-radius:25px;
-  background:#fff3f0;
+  background:#ffffff; /* 白色填充 */
   cursor:pointer;
   text-align:left;
   transition:0.2s;
 }
-button.option:hover { background:#ffd6c2; }
-button.option.selected { background:#ff7f50; color:#fff; }
+button.option:hover { background:#e0f0ff; }
+button.option.selected { background:#87ceeb; color:#fff; }
 textarea {
   width:90%; padding:10px; margin-top:15px;
   border-radius:15px; border:1px solid #ccc; font-size:1.2em;
+  background:#ffffff; /* 白色填充 */
 }
 label { font-size:1.2em; font-weight:bold; display:block; margin-top:20px; text-align:left; }
 </style>
@@ -74,7 +75,6 @@ label { font-size:1.2em; font-weight:bold; display:block; margin-top:20px; text-
   <button class="option" onclick="answerPage2('小猫',this)">小猫</button>
   <button class="option" onclick="answerPage2('小恐龙',this)">小恐龙</button>
   <button class="option" onclick="answerPage2('小草',this)">小草</button>
-  <button class="option" onclick="answerPage2('小狮子',this)">小狮子</button>
   <button class="option" onclick="answerPage2('拒绝福瑞',this)">拒绝福瑞</button>
 </div>
 
@@ -177,25 +177,21 @@ let generous=false, brave=false, rational=false;
 let testAnswers={6:'',7:'',8:''};
 let forceEnding='';
 
-// 页面跳转
 function goToPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 }
 
-// 选项样式
 function selectButton(btn){
   btn.parentNode.querySelectorAll('button.option').forEach(b=>b.classList.remove('selected'));
   btn.classList.add('selected');
 }
 
-// page2
 function answerPage2(choice,btn){
   selectButton(btn);
   setTimeout(()=>goToPage('page3'),300);
 }
 
-// page3
 function answerPage3(option,btn){
   selectButton(btn);
   if(option==3) generous=true;
@@ -203,7 +199,6 @@ function answerPage3(option,btn){
   setTimeout(()=>goToPage(option==4?'page5_1':'page4'),300);
 }
 
-// page4
 function answerPage4(option,btn){
   selectButton(btn);
   setTimeout(()=>{
@@ -213,14 +208,12 @@ function answerPage4(option,btn){
   },300);
 }
 
-// page4.1
 function answerPage4_1(option,btn){
   selectButton(btn);
   if(option==3) rational=true;
   setTimeout(()=>goToPage('page4_1_1'),300);
 }
 
-// 测试题
 function answerTest(page,choice,btn){
   selectButton(btn);
   testAnswers[page]=choice;
@@ -231,13 +224,11 @@ function answerTest(page,choice,btn){
   },300);
 }
 
-// 强制 bad1
 function forceBad1(){
   forceEnding='bad1';
   showEndingPage();
 }
 
-// 结局判定
 function showEndingPage(){
   let ending='';
   if(forceEnding){
