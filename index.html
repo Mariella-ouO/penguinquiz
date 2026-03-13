@@ -5,22 +5,39 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>小全互动测试</title>
 <style>
-  body { font-family: Arial, sans-serif; padding: 20px; background: #f0f8ff; }
-  .page { display: none; }
-  .page.active { display: block; }
-  h2 { color: #333; }
-  button { display: block; margin: 10px 0; padding: 10px 15px; font-size: 16px; }
-  .question { margin-bottom: 20px; }
-  textarea { width: 100%; padding: 8px; margin-top: 5px; }
+  body { font-family: Arial, sans-serif; background: #f0f8ff; margin:0; padding:0; display:flex; justify-content:center; }
+  .container { max-width:600px; width:100%; padding:20px; }
+  .page { display:none; text-align:center; }
+  .page.active { display:block; }
+  h2 { color:#333; margin-bottom:10px; }
+  .question p { margin-bottom:20px; font-size:18px; }
+  button.option {
+    display:block;
+    margin: 10px auto;
+    padding:12px 20px;
+    font-size:16px;
+    width:80%;
+    max-width:300px;
+    cursor:pointer;
+    border:1px solid #007bff;
+    border-radius:5px;
+    background:#fff;
+    transition:0.2s;
+  }
+  button.option:hover { background:#e0f0ff; }
+  button.option.selected { background:#007bff; color:#fff; }
+  textarea { width:90%; padding:8px; margin-top:10px; }
+  label { display:block; margin-top:20px; font-weight:bold; }
 </style>
 </head>
 <body>
+<div class="container">
 
 <!-- page1 -->
 <div class="page active" id="page1">
   <h2>小全互动测试</h2>
-  <p> 你睁开眼睛，不知身处何处。前方似乎出现了一个黑白色的身影…… </p>
-  <button onclick="goToPage('page2')">开始冒险</button>
+  <p>欢迎来到小全的测试！准备好了吗？</p>
+  <button class="option" onclick="goToPage('page2')">开始测试</button>
 </div>
 
 <!-- page2: 问题1 -->
@@ -28,13 +45,13 @@
   <div class="question">
     <h2>问题1</h2>
     <p>如果小全是企鹅，你是？</p>
-    <button onclick="answerPage2('小狗')">小狗</button>
-    <button onclick="answerPage2('小蛇')">小蛇</button>
-    <button onclick="answerPage2('小猫')">小猫</button>
-    <button onclick="answerPage2('小恐龙')">小恐龙</button>
-    <button onclick="answerPage2('小草')">小草</button>
-    <button onclick="answerPage2('小狮子')">小狮子</button>
-    <button onclick="answerPage2('拒绝福瑞')">拒绝福瑞</button>
+    <button class="option" onclick="answerPage2('小狗',this)">小狗</button>
+    <button class="option" onclick="answerPage2('小蛇',this)">小蛇</button>
+    <button class="option" onclick="answerPage2('小猫',this)">小猫</button>
+    <button class="option" onclick="answerPage2('小恐龙',this)">小恐龙</button>
+    <button class="option" onclick="answerPage2('小草',this)">小草</button>
+    <button class="option" onclick="answerPage2('小狮子',this)">小狮子</button>
+    <button class="option" onclick="answerPage2('拒绝福瑞',this)">拒绝福瑞</button>
   </div>
 </div>
 
@@ -43,10 +60,10 @@
   <div class="question">
     <h2>问题2</h2>
     <p>如果你有10颗巧克力，而小全有10块石头，你愿意交换多少巧克力和石头？</p>
-    <button onclick="answerPage3(1)">换一块石头</button>
-    <button onclick="answerPage3(2)">换两块石头</button>
-    <button onclick="answerPage3(3)">直接把巧克力给她</button>
-    <button onclick="answerPage3(4)">抢夺她的石头并嘲讽（有风险）</button>
+    <button class="option" onclick="answerPage3(1,this)">换一块石头</button>
+    <button class="option" onclick="answerPage3(2,this)">换两块石头</button>
+    <button class="option" onclick="answerPage3(3,this)">直接把巧克力给她</button>
+    <button class="option" onclick="answerPage3(4,this)">抢夺她的石头并嘲讽（有风险）</button>
   </div>
 </div>
 
@@ -55,9 +72,9 @@
   <div class="question">
     <h2>问题3</h2>
     <p>小全吃掉了巧克力，并向你说到：年轻的伙伴呦，看在你给我巧克力的份上，我可以实现你一个愿望。</p>
-    <button onclick="answerPage4(1)">我想要一个珍贵的礼物</button>
-    <button onclick="answerPage4(2)">我想要和你成为朋友</button>
-    <button onclick="answerPage4(3)">企鹅怎么会说话？</button>
+    <button class="option" onclick="answerPage4(1,this)">我想要一个珍贵的礼物</button>
+    <button class="option" onclick="answerPage4(2,this)">我想要和你成为朋友</button>
+    <button class="option" onclick="answerPage4(3,this)">企鹅怎么会说话？</button>
   </div>
 </div>
 
@@ -65,33 +82,33 @@
 <div class="page" id="page4_1">
   <h2>小全递给你一个亮闪闪东西</h2>
   <p>是一个包了巧克力包装纸的石头</p>
-  <button onclick="answerPage4_1(1)">高兴地收下</button>
-  <button onclick="answerPage4_1(2)">疑惑地收下</button>
-  <button onclick="answerPage4_1(3)">发出质疑：这不是我刚才给你的巧克力吃剩的吗？</button>
+  <button class="option" onclick="answerPage4_1(1,this)">高兴地收下</button>
+  <button class="option" onclick="answerPage4_1(2,this)">疑惑地收下</button>
+  <button class="option" onclick="answerPage4_1(3,this)">发出质疑：这不是我刚才给你的巧克力吃剩的吗？</button>
 </div>
 
 <!-- page4.1.1 -->
 <div class="page" id="page4_1_1">
   <p>小全解释：“我们企鹅会将最闪亮的石头作为珍贵的礼物，送给喜欢的人。你愿意回答我几个问题，成为我真挚的伙伴吗？”</p>
-  <button onclick="goToPage('page6')">太好了！</button>
+  <button class="option" onclick="goToPage('page6')">太好了！</button>
 </div>
 
 <!-- page4.3 -->
 <div class="page" id="page4_3">
   <p>小全看着你，失望地叹了口气，说：“没错。我只是你上学上出来的幻觉罢了。是时候醒来了，我的伙伴。”</p>
-  <button onclick="showEnding('bad1')">查看结局</button>
+  <button class="option" onclick="showEnding('bad1')">查看结局</button>
 </div>
 
 <!-- page5 -->
 <div class="page" id="page5">
   <p>小全点了点头说：“要成为我的伙伴，需要通过我的测试。你有把握吗？”</p>
-  <button onclick="goToPage('page6')">放马过来吧！</button>
+  <button class="option" onclick="goToPage('page6')">放马过来吧！</button>
 </div>
 
 <!-- page5.1 -->
 <div class="page" id="page5_1">
   <p>小全看着你说：“我欣赏你的态度，只要你通过测试，就能成为我的伙伴。你有把握吗？”</p>
-  <button onclick="goToPage('page6')">放马过来吧！</button>
+  <button class="option" onclick="goToPage('page6')">放马过来吧！</button>
 </div>
 
 <!-- page6 -->
@@ -99,10 +116,10 @@
   <div class="question">
     <h2>问题4</h2>
     <p>世界上一共有多少种企鹅？</p>
-    <button onclick="answerTest(6,'9')">9</button>
-    <button onclick="answerTest(6,'18')">18</button>
-    <button onclick="answerTest(6,'19')">19</button>
-    <button onclick="answerTest(6,'不知道')">不知道</button>
+    <button class="option" onclick="answerTest(6,'9',this)">9</button>
+    <button class="option" onclick="answerTest(6,'18',this)">18</button>
+    <button class="option" onclick="answerTest(6,'19',this)">19</button>
+    <button class="option" onclick="answerTest(6,'不知道',this)">不知道</button>
   </div>
 </div>
 
@@ -111,10 +128,10 @@
   <div class="question">
     <h2>问题5</h2>
     <p>体型最小的企鹅是哪一种？</p>
-    <button onclick="answerTest(7,'帝企鹅')">帝企鹅</button>
-    <button onclick="answerTest(7,'阿德利企鹅')">阿德利企鹅</button>
-    <button onclick="answerTest(7,'小蓝企鹅')">小蓝企鹅</button>
-    <button onclick="answerTest(7,'不知道')">不知道</button>
+    <button class="option" onclick="answerTest(7,'帝企鹅',this)">帝企鹅</button>
+    <button class="option" onclick="answerTest(7,'阿德利企鹅',this)">阿德利企鹅</button>
+    <button class="option" onclick="answerTest(7,'小蓝企鹅',this)">小蓝企鹅</button>
+    <button class="option" onclick="answerTest(7,'不知道',this)">不知道</button>
   </div>
 </div>
 
@@ -123,10 +140,10 @@
   <div class="question">
     <h2>问题6</h2>
     <p>求积分：∫<sub>-1</sub><sup>1</sup> x³ e^x dx</p>
-    <button onclick="answerTest(8,'0')">0</button>
-    <button onclick="answerTest(8,'1')">1</button>
-    <button onclick="answerTest(8,'e-1')">e-1</button>
-    <button onclick="answerTest(8,'不知道')">不知道</button>
+    <button class="option" onclick="answerTest(8,'0',this)">0</button>
+    <button class="option" onclick="answerTest(8,'1',this)">1</button>
+    <button class="option" onclick="answerTest(8,'e-1',this)">e-1</button>
+    <button class="option" onclick="answerTest(8,'不知道',this)">不知道</button>
   </div>
 </div>
 
@@ -135,13 +152,11 @@
   <h2>结局</h2>
   <p id="endingText"></p>
 
-  <!-- Formspree 留言表单 -->
   <form id="endingForm" action="https://formspree.io/f/mojkwrnd" method="POST" target="_blank">
     <label for="userMessage">最后，你有什么想对小全说的吗？</label>
     <textarea id="userMessage" name="message" rows="4"></textarea>
     <button type="submit" style="margin-top:10px;">提交</button>
   </form>
-
   <p style="margin-top:15px; color:#555;">提交后可以截屏到小全朋友圈互动哦~</p>
 </div>
 
@@ -154,37 +169,56 @@ function goToPage(id){
   document.getElementById(id).classList.add('active');
 }
 
-function answerPage2(choice){
-  goToPage('page3');
+function selectButton(btn){
+  btn.parentNode.querySelectorAll('button.option').forEach(b=>b.classList.remove('selected'));
+  btn.classList.add('selected');
 }
 
-function answerPage3(option){
+// 问题1
+function answerPage2(choice,btn){
+  selectButton(btn);
+  setTimeout(()=>goToPage('page3'),300);
+}
+
+// 问题2
+function answerPage3(option,btn){
+  selectButton(btn);
   if(option==3) generous=true;
   if(option==4) brave=true;
-  goToPage(option==4?'page5_1':'page4');
+  setTimeout(()=>goToPage(option==4?'page5_1':'page4'),300);
 }
 
-function answerPage4(option){
-  if(option==1) goToPage('page4_1');
-  else if(option==2) goToPage('page5');
-  else goToPage('page4_3'); 
+// 问题3
+function answerPage4(option,btn){
+  selectButton(btn);
+  setTimeout(()=>{
+    if(option==1) goToPage('page4_1');
+    else if(option==2) goToPage('page5');
+    else goToPage('page4_3'); 
+  },300);
 }
 
-function answerPage4_1(option){
+// page4.1
+function answerPage4_1(option,btn){
+  selectButton(btn);
   if(option==3) rational=true;
-  goToPage('page4_1_1');
+  setTimeout(()=>goToPage('page4_1_1'),300);
 }
 
-function answerTest(page, choice){
+// 测试题
+function answerTest(page,choice,btn){
+  selectButton(btn);
   testAnswers[page]=choice;
-  if(page==6) goToPage('page7');
-  else if(page==7) goToPage('page8');
-  else showEndingPage();
+  setTimeout(()=>{
+    if(page==6) goToPage('page7');
+    else if(page==7) goToPage('page8');
+    else showEndingPage();
+  },300);
 }
 
 function showEndingPage(){
   let ending='';
-  let c6 = testAnswers[6], c7=testAnswers[7], c8=testAnswers[8];
+  let c6=testAnswers[6], c7=testAnswers[7], c8=testAnswers[8];
   let correct6='18', correct7='小蓝企鹅', correct8='0';
 
   if(brave){
@@ -199,24 +233,23 @@ function showEndingPage(){
   }
   else{
     if(c6==c7 && c7==c8 && c6=='不知道') ending='happy2';
-    else if(c6==correct6 && c7==correct7 && c8==correct8) ending='happy1';
     else ending='happy3';
   }
 
-  const endings = {
-    hiddenGenerous: "隐藏结局1: 慷慨的伙伴。你答对了三道题，还把巧克力都给了小全，你真好。",
-    hiddenBrave: "隐藏结局2: 你通过了考验，是真正的勇敢者。",
-    hiddenRational: "隐藏结局3: 理智的伙伴。尽管你质疑了小全的礼物，但正确回答了所有问题。能面刺寡人之过者，受上赏。",
-    happy1: "Happy Endding 1: 智慧的伙伴。你答对了所有问题，智慧之光比世界上所有的石头都更闪亮。",
-    happy2: "Happy Endding 2: 诚实的伙伴。你在所有问题上都选择了“不知道”。你的诚实打动了小全。",
-    happy3: "Happy Endding 3: 忠诚的伙伴。尽管没有得到全部问题的正确答案，你的耐心与陪伴打动了小全。她愿意和你一起继续冒险。",
-    bad1: "Bad Endding 1: 回归现实。学业繁忙，压力过大，也不要忘了和小全聊聊天。",
-    bad2: "Bad Endding 2: 你没能通过小全的测试。之前抢来的石头全部打在了你身上。"
+  const endings={
+    hiddenGenerous:"隐藏结局1: 慷慨的伙伴。你答对了三道题，还把巧克力都给了小全，你真好。",
+    hiddenBrave:"隐藏结局2: 你通过了考验，是真正的勇敢者。",
+    hiddenRational:"隐藏结局3: 理智的伙伴。尽管你质疑了小全的礼物，但正确回答了所有问题。能面刺寡人之过者，受上赏。",
+    happy1:"Happy Endding 1: 智慧的伙伴。你答对了所有问题，智慧之光比世界上所有的石头都更闪亮。",
+    happy2:"Happy Endding 2: 诚实的伙伴。你在所有问题上都选择了“不知道”。你的诚实打动了小全。",
+    happy3:"Happy Endding 3: 忠诚的伙伴。尽管没有得到全部问题的正确答案，你的耐心与陪伴打动了小全。她愿意和你一起继续冒险。",
+    bad1:"Bad Endding 1: 回归现实。学业繁忙，压力过大，也不要忘了和小全聊聊天。",
+    bad2:"Bad Endding 2: 你没能通过小全的测试。之前抢来的石头全部打在了你身上。"
   };
-
   document.getElementById('endingText').innerText = endings[ending];
   goToPage('endingPage');
 }
 </script>
+</div>
 </body>
 </html>
