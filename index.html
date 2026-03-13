@@ -5,38 +5,54 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>小全互动测试</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
-  body {
-    font-family: 'Baloo 2', cursive;
-    background: linear-gradient(to bottom, #fffae3, #d0f0fd);
-    margin:0; padding:0;
-    display:flex; justify-content:center;
-  }
-  .container {
-    max-width:600px; width:100%; padding:20px;
-    background:#fff9f5; border-radius:15px; box-shadow:0 4px 10px rgba(0,0,0,0.1);
-  }
-  .page { display:none; text-align:center; transition:0.3s; }
-  .page.active { display:block; }
-  h2 { color:#333; margin-bottom:10px; font-size:1.6em; }
-  .question p { margin-bottom:20px; font-size:1.2em; }
-  button.option {
-    display:block;
-    margin:10px auto;
-    padding:12px 20px;
-    font-size:16px;
-    width:80%;
-    max-width:300px;
-    cursor:pointer;
-    border:2px solid #ff7f50;
-    border-radius:25px;
-    background:#fff3f0;
-    transition:0.2s;
-  }
-  button.option:hover { background:#ffd6c2; }
-  button.option.selected { background:#ff7f50; color:#fff; }
-  textarea { width:90%; padding:8px; margin-top:10px; border-radius:10px; border:1px solid #ccc; }
-  label { display:block; margin-top:20px; font-weight:bold; }
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2&display=swap');
+body, html {
+  height:100%;
+  margin:0;
+  font-family:'Baloo 2', cursive;
+  background: linear-gradient(to bottom, #fff5f7, #d0f0fd);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.container {
+  width:90%;
+  max-width:600px;
+  min-height:80%;
+  background:#fffdf6;
+  border-radius:25px;
+  padding:30px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.15);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+.page { display:none; width:100%; transition:0.3s;}
+.page.active { display:flex; flex-direction:column; align-items:center; justify-content:center; }
+h2 { font-size:2em; color:#333; margin-bottom:15px; }
+p { font-size:1.3em; color:#444; margin-bottom:25px; }
+button.option {
+  width:80%;
+  max-width:400px;
+  padding:15px 20px;
+  margin:10px 0;
+  font-size:1.3em;
+  border:2px solid #ff7f50;
+  border-radius:25px;
+  background:#fff3f0;
+  cursor:pointer;
+  text-align:left;
+  transition:0.2s;
+}
+button.option:hover { background:#ffd6c2; }
+button.option.selected { background:#ff7f50; color:#fff; }
+textarea {
+  width:90%; padding:10px; margin-top:15px;
+  border-radius:15px; border:1px solid #ccc; font-size:1.2em;
+}
+label { font-size:1.2em; font-weight:bold; display:block; margin-top:20px; text-align:left; }
 </style>
 </head>
 <body>
@@ -49,42 +65,36 @@
   <button class="option" onclick="goToPage('page2')">开始冒险</button>
 </div>
 
-<!-- page2: 问题1 -->
+<!-- page2 -->
 <div class="page" id="page2">
-  <div class="question">
-    <h2>问题1</h2>
-    <p>如果小全是企鹅，你是？</p>
-    <button class="option" onclick="answerPage2('小狗',this)">小狗</button>
-    <button class="option" onclick="answerPage2('小蛇',this)">小蛇</button>
-    <button class="option" onclick="answerPage2('小猫',this)">小猫</button>
-    <button class="option" onclick="answerPage2('小恐龙',this)">小恐龙</button>
-    <button class="option" onclick="answerPage2('小草',this)">小草</button>
-    <button class="option" onclick="answerPage2('小狮子',this)">小狮子</button>
-    <button class="option" onclick="answerPage2('拒绝福瑞',this)">拒绝福瑞</button>
-  </div>
+  <h2>问题1</h2>
+  <p>如果小全是企鹅，你是？</p>
+  <button class="option" onclick="answerPage2('小狗',this)">小狗</button>
+  <button class="option" onclick="answerPage2('小蛇',this)">小蛇</button>
+  <button class="option" onclick="answerPage2('小猫',this)">小猫</button>
+  <button class="option" onclick="answerPage2('小恐龙',this)">小恐龙</button>
+  <button class="option" onclick="answerPage2('小草',this)">小草</button>
+  <button class="option" onclick="answerPage2('小狮子',this)">小狮子</button>
+  <button class="option" onclick="answerPage2('拒绝福瑞',this)">拒绝福瑞</button>
 </div>
 
-<!-- page3: 问题2 -->
+<!-- page3 -->
 <div class="page" id="page3">
-  <div class="question">
-    <h2>问题2</h2>
-    <p>如果你有10颗巧克力，而小全有10块石头，你愿意交换多少巧克力和石头？</p>
-    <button class="option" onclick="answerPage3(1,this)">换一块石头</button>
-    <button class="option" onclick="answerPage3(2,this)">换两块石头</button>
-    <button class="option" onclick="answerPage3(3,this)">直接把巧克力给她</button>
-    <button class="option" onclick="answerPage3(4,this)">抢夺她的石头并嘲讽（有风险）</button>
-  </div>
+  <h2>问题2</h2>
+  <p>如果你有10颗巧克力，而小全有10块石头，你愿意交换多少巧克力和石头？</p>
+  <button class="option" onclick="answerPage3(1,this)">换一块石头</button>
+  <button class="option" onclick="answerPage3(2,this)">换两块石头</button>
+  <button class="option" onclick="answerPage3(3,this)">直接把巧克力给她</button>
+  <button class="option" onclick="answerPage3(4,this)">抢夺她的石头并嘲讽（有风险）</button>
 </div>
 
-<!-- page4: 问题3 -->
+<!-- page4 -->
 <div class="page" id="page4">
-  <div class="question">
-    <h2>问题3</h2>
-    <p>小全吃掉了巧克力，并向你说道：年轻的伙伴呦，看在你给我巧克力的份上，我可以实现你一个愿望。</p>
-    <button class="option" onclick="answerPage4(1,this)">我想要一个珍贵的礼物</button>
-    <button class="option" onclick="answerPage4(2,this)">我想要和你成为朋友</button>
-    <button class="option" onclick="answerPage4(3,this)">企鹅怎么会说话？</button>
-  </div>
+  <h2>问题3</h2>
+  <p>小全吃掉了巧克力，并向你说道：年轻的伙伴呦，看在你给我巧克力的份上，我可以实现你一个愿望。</p>
+  <button class="option" onclick="answerPage4(1,this)">我想要一个珍贵的礼物</button>
+  <button class="option" onclick="answerPage4(2,this)">我想要和你成为朋友</button>
+  <button class="option" onclick="answerPage4(3,this)">企鹅怎么会说话？</button>
 </div>
 
 <!-- page4.1 -->
@@ -105,7 +115,7 @@
 <!-- page4.3 -->
 <div class="page" id="page4_3">
   <p>小全看着你，失望地叹了口气，说：“没错。我只是你上学上出来的幻觉罢了。是时候醒来了，我的伙伴。”</p>
-  <button class="option" onclick="showEnding('bad1')">查看结局</button>
+  <button class="option" onclick="forceBad1()">查看结局</button>
 </div>
 
 <!-- page5 -->
@@ -122,45 +132,38 @@
 
 <!-- page6 -->
 <div class="page" id="page6">
-  <div class="question">
-    <h2>问题4</h2>
-    <p>世界上一共有多少种企鹅？</p>
-    <button class="option" onclick="answerTest(6,'9',this)">9</button>
-    <button class="option" onclick="answerTest(6,'18',this)">18</button>
-    <button class="option" onclick="answerTest(6,'19',this)">19</button>
-    <button class="option" onclick="answerTest(6,'不知道',this)">不知道</button>
-  </div>
+  <h2>问题4</h2>
+  <p>世界上一共有多少种企鹅？</p>
+  <button class="option" onclick="answerTest(6,'9',this)">9</button>
+  <button class="option" onclick="answerTest(6,'18',this)">18</button>
+  <button class="option" onclick="answerTest(6,'19',this)">19</button>
+  <button class="option" onclick="answerTest(6,'不知道',this)">不知道</button>
 </div>
 
 <!-- page7 -->
 <div class="page" id="page7">
-  <div class="question">
-    <h2>问题5</h2>
-    <p>体型最小的企鹅是哪一种？</p>
-    <button class="option" onclick="answerTest(7,'帝企鹅',this)">帝企鹅</button>
-    <button class="option" onclick="answerTest(7,'阿德利企鹅',this)">阿德利企鹅</button>
-    <button class="option" onclick="answerTest(7,'小蓝企鹅',this)">小蓝企鹅</button>
-    <button class="option" onclick="answerTest(7,'不知道',this)">不知道</button>
-  </div>
+  <h2>问题5</h2>
+  <p>体型最小的企鹅是哪一种？</p>
+  <button class="option" onclick="answerTest(7,'帝企鹅',this)">帝企鹅</button>
+  <button class="option" onclick="answerTest(7,'阿德利企鹅',this)">阿德利企鹅</button>
+  <button class="option" onclick="answerTest(7,'小蓝企鹅',this)">小蓝企鹅</button>
+  <button class="option" onclick="answerTest(7,'不知道',this)">不知道</button>
 </div>
 
 <!-- page8 -->
 <div class="page" id="page8">
-  <div class="question">
-    <h2>问题6</h2>
-    <p>求积分：∫<sub>-1</sub><sup>1</sup> x³ e^x dx</p>
-    <button class="option" onclick="answerTest(8,'0',this)">0</button>
-    <button class="option" onclick="answerTest(8,'1',this)">1</button>
-    <button class="option" onclick="answerTest(8,'e-1',this)">e-1</button>
-    <button class="option" onclick="answerTest(8,'不知道',this)">不知道</button>
-  </div>
+  <h2>问题6</h2>
+  <p>求积分：∫<sub>-1</sub><sup>1</sup> x³ e^x dx</p>
+  <button class="option" onclick="answerTest(8,'0',this)">0</button>
+  <button class="option" onclick="answerTest(8,'1',this)">1</button>
+  <button class="option" onclick="answerTest(8,'e-1',this)">e-1</button>
+  <button class="option" onclick="answerTest(8,'不知道',this)">不知道</button>
 </div>
 
 <!-- 结局页面 -->
 <div class="page" id="endingPage">
   <h2>结局</h2>
   <p id="endingText"></p>
-
   <form id="endingForm" action="https://formspree.io/f/mojkwrnd" method="POST" target="_blank">
     <label for="userMessage">最后，你有什么想对小全说的吗？</label>
     <textarea id="userMessage" name="message" rows="4"></textarea>
@@ -172,24 +175,27 @@
 <script>
 let generous=false, brave=false, rational=false;
 let testAnswers={6:'',7:'',8:''};
+let forceEnding='';
 
+// 页面跳转
 function goToPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 }
 
+// 选项样式
 function selectButton(btn){
   btn.parentNode.querySelectorAll('button.option').forEach(b=>b.classList.remove('selected'));
   btn.classList.add('selected');
 }
 
-// 问题1
+// page2
 function answerPage2(choice,btn){
   selectButton(btn);
   setTimeout(()=>goToPage('page3'),300);
 }
 
-// 问题2
+// page3
 function answerPage3(option,btn){
   selectButton(btn);
   if(option==3) generous=true;
@@ -197,7 +203,7 @@ function answerPage3(option,btn){
   setTimeout(()=>goToPage(option==4?'page5_1':'page4'),300);
 }
 
-// 问题3
+// page4
 function answerPage4(option,btn){
   selectButton(btn);
   setTimeout(()=>{
@@ -225,24 +231,36 @@ function answerTest(page,choice,btn){
   },300);
 }
 
+// 强制 bad1
+function forceBad1(){
+  forceEnding='bad1';
+  showEndingPage();
+}
+
+// 结局判定
 function showEndingPage(){
   let ending='';
-  let c6=testAnswers[6], c7=testAnswers[7], c8=testAnswers[8];
-  let correct6='18', correct7='小蓝企鹅', correct8='0';
+  if(forceEnding){
+    ending=forceEnding;
+    forceEnding='';
+  } else {
+    let c6=testAnswers[6], c7=testAnswers[7], c8=testAnswers[8];
+    let correct6='18', correct7='小蓝企鹅', correct8='0';
 
-  if(brave){
-    if(c6==correct6 && c7==correct7 && c8==correct8){
-      ending='hiddenBrave';
-    } else ending='bad2';
-  }
-  else if(c6==correct6 && c7==correct7 && c8==correct8){
-    if(rational) ending='hiddenRational';
-    else if(generous) ending='hiddenGenerous';
-    else ending='happy1';
-  }
-  else{
-    if(c6==c7 && c7==c8 && c6=='不知道') ending='happy2';
-    else ending='happy3';
+    if(brave){
+      if(c6==correct6 && c7==correct7 && c8==correct8){
+        ending='hiddenBrave';
+      } else ending='bad2';
+    }
+    else if(c6==correct6 && c7==correct7 && c8==correct8){
+      if(rational) ending='hiddenRational';
+      else if(generous) ending='hiddenGenerous';
+      else ending='happy1';
+    }
+    else{
+      if(c6==c7 && c7==c8 && c6=='不知道') ending='happy2';
+      else ending='happy3';
+    }
   }
 
   const endings={
